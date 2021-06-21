@@ -1,6 +1,10 @@
 import React from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import ProtectedRoute from './ProtectedRoute';
 import Header from './Header';
 import Main from './Main';
+import Login from './Login';
+import Register from './Register';
 import Footer from './Footer';
 import ImagePopup from './ImagePopup';
 import EditProfilePopup from './EditProfilePopup';
@@ -20,6 +24,7 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
   const [deletedCard, setDeletedCard] = React.useState({});
+  const [loggedIn, setLoggedIn] = React.useState(false);
 
   // получение с сервера информации о пользователе и начальных карточках
   React.useEffect(() => {
@@ -151,15 +156,29 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page__container">
         <Header />
-        <Main
-          cards={cards}
-          onEditProfile={handleEditProfileClick}
-          onAddPlace={handleAddPlaceClick}
-          onEditAvatar={handleEditAvatarClick}
-          onCardClick={handleCardClick}
-          onCardDelete={handleDeleteClick}
-          onCardLike={handleCardLike}
-        />
+        <Switch>
+          <Route path="/signup">
+            <Register />
+          </Route>
+          <Route path="/signin">
+            <Login />
+          </Route>
+          <ProtectedRoute
+            path="/main"
+            loggedIn={loggedIn}
+            component={Main}
+            cards={cards}
+            onEditProfile={handleEditProfileClick}
+            onAddPlace={handleAddPlaceClick}
+            onEditAvatar={handleEditAvatarClick}
+            onCardClick={handleCardClick}
+            onCardDelete={handleDeleteClick}
+            onCardLike={handleCardLike}
+          />
+          <Route>
+            { loggedIn ? <Redirect to="/main"/> : <Redirect to="/signin" /> }
+          </Route>
+        </Switch>
         <Footer />
       </div>
 
