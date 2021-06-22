@@ -152,16 +152,21 @@ function App() {
     });
   }
 
+  // залогинить пользователя
+  function handleLogin() {
+    setLoggedIn(true);
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page__container">
         <Header />
         <Switch>
           <Route path="/signup">
-            <Register />
+            <Register handleLogin={handleLogin} />
           </Route>
           <Route path="/signin">
-            <Login />
+            <Login handleLogin={handleLogin} />
           </Route>
           <ProtectedRoute
             path="/main"

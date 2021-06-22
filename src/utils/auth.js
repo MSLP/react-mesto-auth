@@ -15,7 +15,7 @@ class Auth {
   }
 
   // отправка данных для регистрации
-  signup(data) {
+  register(data) {
     return fetch(`${this.baseUrl}/signup`, {
       method: 'POST',
       headers: this.headers,
@@ -25,7 +25,7 @@ class Auth {
   }
 
   // отправка данных для того, чтобы войти
-  signin(data) {
+  login(data) {
     return fetch(`${this.baseUrl}/signin`, {
       method: 'POST',
       headers: this.headers,

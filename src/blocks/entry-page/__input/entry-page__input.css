@@ -9,6 +9,7 @@
   padding: 0;
   padding-bottom: 13px;
   border-bottom: 2px solid rgb(204, 204, 204);
+  color: #ccc;
 }
 
 .entry-page__input:focus {
