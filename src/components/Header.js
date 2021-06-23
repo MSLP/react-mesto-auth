@@ -3,18 +3,22 @@ import { useHistory, useLocation } from 'react-router-dom';
 import logo from '../images/Vector.svg';
 
 // шапка сайта
-function Header() {
+function Header({ handleLogin }) {
   const history = useHistory();
   const location = useLocation();
   const [buttonText, setButtonText] = React.useState('');
 
   // переход на страницу регистрации/входа по кнопке в шапке
   function handleClick() {
-    if (location.pathname === '/signup' || location.pathname === '/main') {
+    if (location.pathname === '/signup') {
       history.push('/signin')
     }
     else if (location.pathname === '/signin') {
       history.push('/signup')
+    }
+    else if (location.pathname === '/main') {
+      history.push('/signin');
+      handleLogin(false);
     }
   }
 

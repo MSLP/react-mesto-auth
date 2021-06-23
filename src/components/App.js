@@ -160,8 +160,8 @@ function App() {
   }
 
   // залогинить пользователя
-  function handleLogin() {
-    setLoggedIn(true);
+  function handleLogin(status) {
+    setLoggedIn(status);
   }
 
   // при успешной регистрации переходим на основную страницу,
@@ -169,7 +169,7 @@ function App() {
   function handleRegister(data) {
     auth.register(data)
     .then(res => {
-      handleLogin();
+      handleLogin(true);
       setIsRegistered(true);
       setIsInfoTooltipOpen(true);
       history.push('./main');
@@ -184,7 +184,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page__container">
-        <Header />
+        <Header handleLogin={handleLogin} />
         <Switch>
           <Route path="/signup">
             <Register onSubmit={handleRegister} />
@@ -204,7 +204,7 @@ function App() {
             onCardDelete={handleDeleteClick}
             onCardLike={handleCardLike}
           />
-          <Route>
+          <Route path="/">
             { loggedIn ? <Redirect to="/main"/> : <Redirect to="/signin" /> }
           </Route>
         </Switch>
