@@ -173,7 +173,7 @@ function App() {
         <Header />
         <Switch>
           <Route path="/signup">
-            <Register handleLogin={handleLogin} />
+            <Register handleLogin={handleLogin} handleRegister={handleRegister} />
           </Route>
           <Route path="/signin">
             <Login handleLogin={handleLogin} />
