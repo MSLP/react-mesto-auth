@@ -21,13 +21,13 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [isDeletePopupOpen, setIsDeletePopupOpen] = React.useState(false);
-  const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({isSelected: false});
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
   const [deletedCard, setDeletedCard] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const [isRegistered, setIsRegistered] = React.useState(false);
+  const [isRegistered, setIsRegistered] = React.useState(true);
 
   // получение с сервера информации о пользователе и начальных карточках
   React.useEffect(() => {
@@ -68,7 +68,7 @@ function App() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsDeletePopupOpen(false);
-    setInfoTooltipOpen(false);
+    setIsInfoTooltipOpen(false);
     setSelectedCard({isSelected: false});
   }
 
@@ -164,7 +164,7 @@ function App() {
   // сменить статус зарегистрированности пользователя
   function handleRegister(result) {
     setIsRegistered(result);
-    setInfoTooltipOpen(true);
+    setIsInfoTooltipOpen(true);
   }
 
   return (
