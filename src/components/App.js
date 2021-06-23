@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
 import Header from './Header';
 import Main from './Main';
@@ -13,6 +13,7 @@ import AddPlacePopup from './AddPlacePopup';
 import DeletePlacePopup from './DeletePlacePopup';
 import InfoTooltip from './InfoTooltip';
 import api from '../utils/api';
+import auth from '../utils/auth';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function App() {
@@ -28,6 +29,8 @@ function App() {
   const [deletedCard, setDeletedCard] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isRegistered, setIsRegistered] = React.useState(true);
+
+  const history = useHistory();
 
   // получение с сервера информации о пользователе и начальных карточках
   React.useEffect(() => {
@@ -161,10 +164,21 @@ function App() {
     setLoggedIn(true);
   }
 
-  // сменить статус зарегистрированности пользователя
-  function handleRegister(result) {
-    setIsRegistered(result);
-    setIsInfoTooltipOpen(true);
+  // при успешной регистрации переходим на основную страницу,
+  // а так же сообщаем о статусе регистрации попапом
+  function handleRegister(data) {
+    auth.register(data)
+    .then(res => {
+      handleLogin();
+      setIsRegistered(true);
+      setIsInfoTooltipOpen(true);
+      history.push('./main');
+    })
+    .catch(err => {
+      setIsRegistered(false);
+      setIsInfoTooltipOpen(true);
+      console.log(err);
+    });
   }
 
   return (
@@ -173,7 +187,7 @@ function App() {
         <Header />
         <Switch>
           <Route path="/signup">
-            <Register handleLogin={handleLogin} handleRegister={handleRegister} />
+            <Register onSubmit={handleRegister} />
           </Route>
           <Route path="/signin">
             <Login handleLogin={handleLogin} />
