@@ -1,0 +1,17 @@
+.popup__text {
+  margin: 0 auto;
+  width: 90%;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1.2;
+  text-align: center;
+  color: #000;
+  padding-bottom: 25px;
+}
+
+@media screen and (min-width: 768px) {
+  .popup__text {
+    font-size: 24px;
+  }
+}

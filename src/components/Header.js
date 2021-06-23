@@ -8,6 +8,7 @@ function Header() {
   const location = useLocation();
   const [buttonText, setButtonText] = React.useState('');
 
+  // переход на страницу регистрации/входа по кнопке в шапке
   function handleClick() {
     if (location.pathname === '/signup' || location.pathname === '/main') {
       history.push('/signin')
@@ -17,6 +18,7 @@ function Header() {
     }
   }
 
+  // изменение кнопки в зависимости от страницы
   React.useEffect(() => {
     if (location.pathname === '/signup') {
       setButtonText('Войти');
@@ -28,7 +30,7 @@ function Header() {
       setButtonText('Выйти');
     }
   }, [location]);
-  console.log(location);
+
   return (
     <header className="header">
         <img className="header__logo" src={logo} alt="логотип"/>

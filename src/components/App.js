@@ -11,6 +11,7 @@ import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
 import DeletePlacePopup from './DeletePlacePopup';
+import InfoTooltip from './InfoTooltip';
 import api from '../utils/api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
@@ -20,11 +21,13 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [isDeletePopupOpen, setIsDeletePopupOpen] = React.useState(false);
+  const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({isSelected: false});
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
   const [deletedCard, setDeletedCard] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
+  const [isRegistered, setIsRegistered] = React.useState(false);
 
   // получение с сервера информации о пользователе и начальных карточках
   React.useEffect(() => {
@@ -65,6 +68,7 @@ function App() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsDeletePopupOpen(false);
+    setInfoTooltipOpen(false);
     setSelectedCard({isSelected: false});
   }
 
@@ -157,6 +161,12 @@ function App() {
     setLoggedIn(true);
   }
 
+  // сменить статус зарегистрированности пользователя
+  function handleRegister(result) {
+    setIsRegistered(result);
+    setInfoTooltipOpen(true);
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page__container">
@@ -192,6 +202,7 @@ function App() {
       <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
       <DeletePlacePopup isOpen={isDeletePopupOpen} onClose={closeAllPopups} onDelete={handleCardDelete} />
       <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
+      <InfoTooltip isRegistered={isRegistered} isOpen={isInfoTooltipOpen} onClose={closeAllPopups} />
     </CurrentUserContext.Provider>
   );
 }
