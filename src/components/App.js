@@ -29,20 +29,30 @@ function App() {
   const [deletedCard, setDeletedCard] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isRegistered, setIsRegistered] = React.useState(true);
+  const [email, setEmail] = React.useState('');
 
   const history = useHistory();
+
+  React.useEffect(() => {
+    auth.checkToken(localStorage.getItem('token'))
+    .then(data => {
+      setLoggedIn(true);
+      setEmail(data.data.email);
+      history.push('/main');
+    })
+  }, []);
 
   // получение с сервера информации о пользователе и начальных карточках
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
     .then(([userData, cardsData]) => {
-      setCurrentUser(userData);
-      setCards(cardsData);
+        setCurrentUser(userData);
+        setCards(cardsData);
     })
     .catch(err => {
       console.log(err);
     })
-  }, []);
+  }, [loggedIn]);
 
   // открытие попапа редактирования аватара
   function handleEditAvatarClick() {
@@ -160,8 +170,13 @@ function App() {
   }
 
   // залогинить пользователя
-  function handleLogin(status) {
-    setLoggedIn(status);
+  function handleLogin(data) {
+    auth.login(data)
+    .then(res => {
+      setLoggedIn(true);
+      localStorage.setItem('token', res.token);
+      history.push('/main');
+    })
   }
 
   // при успешной регистрации переходим на основную страницу,
@@ -169,7 +184,7 @@ function App() {
   function handleRegister(data) {
     auth.register(data)
     .then(res => {
-      handleLogin(true);
+      setLoggedIn(true);
       setIsRegistered(true);
       setIsInfoTooltipOpen(true);
       history.push('./main');
@@ -184,12 +199,12 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page__container">
-        <Header handleLogin={handleLogin} />
+        <Header handleLogin={setLoggedIn} email={email} />
         <Switch>
-          <Route path="/signup">
+          <Route path="/sign-up">
             <Register onSubmit={handleRegister} />
           </Route>
-          <Route path="/signin">
+          <Route path="/sign-in">
             <Login handleLogin={handleLogin} />
           </Route>
           <ProtectedRoute
@@ -205,7 +220,7 @@ function App() {
             onCardLike={handleCardLike}
           />
           <Route path="/">
-            { loggedIn ? <Redirect to="/main"/> : <Redirect to="/signin" /> }
+            { loggedIn ? <Redirect to="/main"/> : <Redirect to="/sign-in" /> }
           </Route>
         </Switch>
         <Footer />

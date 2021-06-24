@@ -3,42 +3,38 @@ import { useHistory, useLocation } from 'react-router-dom';
 import logo from '../images/Vector.svg';
 
 // шапка сайта
-function Header({ handleLogin }) {
+function Header({ handleLogin, email }) {
   const history = useHistory();
   const location = useLocation();
-  const [buttonText, setButtonText] = React.useState('');
 
   // переход на страницу регистрации/входа по кнопке в шапке
   function handleClick() {
-    if (location.pathname === '/signup') {
-      history.push('/signin')
+    if (location.pathname === '/sign-up') {
+      history.push('/sign-in')
     }
-    else if (location.pathname === '/signin') {
-      history.push('/signup')
+    else if (location.pathname === '/sign-in') {
+      history.push('/sign-up')
     }
     else if (location.pathname === '/main') {
-      history.push('/signin');
+      history.push('/sign-in');
       handleLogin(false);
+      localStorage.removeItem('token');
     }
   }
-
-  // изменение кнопки в зависимости от страницы
-  React.useEffect(() => {
-    if (location.pathname === '/signup') {
-      setButtonText('Войти');
-    }
-    else if (location.pathname === '/signin') {
-      setButtonText('Регистрация');
-    }
-    else if (location.pathname === '/main') {
-      setButtonText('Выйти');
-    }
-  }, [location]);
 
   return (
     <header className="header">
         <img className="header__logo" src={logo} alt="логотип"/>
-        <button onClick={handleClick} className="button header__button">{buttonText}</button>
+        <div className="header__user-info">
+          {email && <p>{email}</p>}
+          <button onClick={handleClick} className="button header__button">
+            {
+              location.pathname === '/sign-up' ? 'Войти' :
+              location.pathname === '/sign-in' ? 'Регистрация' :
+              location.pathname === '/main' ? 'Выйти' : ''
+            }
+          </button>
+        </div>
     </header>
   );
 }

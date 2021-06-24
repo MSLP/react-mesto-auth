@@ -2,6 +2,7 @@ import React from 'react';
 import pencil from '../images/Pencil.svg';
 import Card from '../components/Card';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { withRouter } from 'react-router-dom';
 
 // контент страницы
 function Main({cards, onEditAvatar, onAddPlace, onEditProfile, onCardClick, onCardLike, onCardDelete}) {
@@ -40,4 +41,4 @@ function Main({cards, onEditAvatar, onAddPlace, onEditProfile, onCardClick, onCa
   );
 }
 
-export default Main;
+export default withRouter(Main);
