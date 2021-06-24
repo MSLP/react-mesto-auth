@@ -26,7 +26,7 @@ function Header({ handleLogin, email }) {
     <header className="header">
         <img className="header__logo" src={logo} alt="логотип"/>
         <div className="header__user-info">
-          {email && <p>{email}</p>}
+          {email && <p className="header__email">{email}</p>}
           <button onClick={handleClick} className="button header__button">
             {
               location.pathname === '/sign-up' ? 'Войти' :

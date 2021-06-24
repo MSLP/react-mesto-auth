@@ -1,6 +1,5 @@
 .header__button {
-  margin-right: 30px;
-  margin-bottom: 33px;
+  margin: 0 30px 33px 24px;
   background-color: transparent;
   color: #fff;
   font-family: inherit;
