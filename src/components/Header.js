@@ -3,7 +3,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import logo from '../images/Vector.svg';
 
 // шапка сайта
-function Header({ handleLogin, email }) {
+function Header({ handleLogin, email, loggedIn }) {
   const history = useHistory();
   const location = useLocation();
 
@@ -26,7 +26,7 @@ function Header({ handleLogin, email }) {
     <header className="header">
         <img className="header__logo" src={logo} alt="логотип"/>
         <div className="header__user-info">
-          {email && <p className="header__email">{email}</p>}
+          {loggedIn && <p className="header__email">{email}</p>}
           <button onClick={handleClick} className="button header__button">
             {
               location.pathname === '/sign-up' ? 'Войти' :

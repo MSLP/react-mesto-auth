@@ -1,9 +1,16 @@
 .header__email {
   margin: 0;
-  font-size: 18px;
+  font-size: 14px;
   font-family: inherit;
   line-height: 1.2;
   font-weight: 500;
   color: #fff;
-  display: inline;
+}
+
+@media screen and (min-width: 768px) {
+  .header__email {
+    font-size: 18px;
+    padding-right: 24px;
+    padding-top: 4px;
+  }
 }

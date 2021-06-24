@@ -199,7 +199,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page__container">
-        <Header handleLogin={setLoggedIn} email={email} />
+        <Header handleLogin={setLoggedIn} email={email} loggedIn={loggedIn} />
         <Switch>
           <Route path="/sign-up">
             <Register onSubmit={handleRegister} />

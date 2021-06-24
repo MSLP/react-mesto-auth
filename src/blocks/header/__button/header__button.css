@@ -1,5 +1,4 @@
 .header__button {
-  margin: 0 30px 33px 24px;
   background-color: transparent;
   color: #fff;
   font-family: inherit;
@@ -15,7 +14,5 @@
 @media screen and (min-width: 768px) {
   .header__button {
     font-size: 18px;
-    margin-right: 0;
-    margin-bottom: 46px;
   }
 }
