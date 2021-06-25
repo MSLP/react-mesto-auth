@@ -1,10 +1,10 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import EntryForm from './EntryForm';
+import AuthForm from './AuthForm';
 
 function Login({handleLogin}) {
   return (
-    <EntryForm title="Вход" buttonText="Войти" onSubmit={handleLogin} />
+    <AuthForm title="Вход" buttonText="Войти" onSubmit={handleLogin} />
   );
 }
 

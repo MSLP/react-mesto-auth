@@ -1,6 +1,6 @@
 import React from 'react';
 
-function EntryForm({title, buttonText, onSubmit}) {
+function AuthForm({title, buttonText, onSubmit}) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
@@ -20,17 +20,17 @@ function EntryForm({title, buttonText, onSubmit}) {
     });
   }
   return (
-    <div className="entry-page">
-      <h2 className="entry-page__title">{title}</h2>
+    <div className="auth-page">
+      <h2 className="auth-page__title">{title}</h2>
       <form onSubmit={handleSubmit} noValidate>
-        <input type="email" className="entry-page__input"
+        <input type="email" className="auth-page__input"
           onChange={handleChangeEmail} value={email || ''} placeholder="Email" required />
-        <input type="password" className="entry-page__input"
+        <input type="password" className="auth-page__input"
           onChange={handleChangePassword} value={password || ''} placeholder="Пароль" minLength="2" maxLength="200" required />
-        <button type="submit" className="entry-page__save button">{buttonText}</button>
+        <button type="submit" className="auth-page__save button">{buttonText}</button>
       </form>
     </div>
   );
 }
 
-export default EntryForm;
+export default AuthForm;

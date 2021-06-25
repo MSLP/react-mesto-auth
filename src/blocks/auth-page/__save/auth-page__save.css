@@ -1,4 +1,4 @@
-.entry-page__save {
+.auth-page__save {
   margin-top: 173px;
   border-radius: 2px;
   padding: 14px 0 14px 0;
@@ -10,12 +10,12 @@
   width: 100%;
 }
 
-.entry-page__save:hover {
+.auth-page__save:hover {
   opacity: 0.8;
 }
 
 @media screen and (min-width: 768px) {
-  .entry-page__save {
+  .auth-page__save {
     margin-top: 216px;
     font-size: 18px;
   }

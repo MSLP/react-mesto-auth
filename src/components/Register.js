@@ -1,10 +1,10 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import EntryForm from './EntryForm';
+import AuthForm from './AuthForm';
 
 function Register({ onSubmit }) {
   return (
-    <EntryForm title="Регистрация" buttonText="Зарегистрироваться" onSubmit={onSubmit} />
+    <AuthForm title="Регистрация" buttonText="Зарегистрироваться" onSubmit={onSubmit} />
   );
 }
 

@@ -28,23 +28,27 @@ function App() {
   const [cards, setCards] = React.useState([]);
   const [deletedCard, setDeletedCard] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const [isRegistered, setIsRegistered] = React.useState(true);
+  const [isRegistered, setIsRegistered] = React.useState(false);
   const [email, setEmail] = React.useState('');
 
   const history = useHistory();
 
   React.useEffect(() => {
-    auth.checkToken(localStorage.getItem('token'))
+    const token = localStorage.getItem('token');
+    token && auth.checkToken(token)
     .then(data => {
       setLoggedIn(true);
       setEmail(data.data.email);
       history.push('/main');
     })
+    .catch(err => {
+      console.log(err);
+    })
   }, []);
 
   // получение с сервера информации о пользователе и начальных карточках
   React.useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
+    loggedIn && Promise.all([api.getUserInfo(), api.getInitialCards()])
     .then(([userData, cardsData]) => {
         setCurrentUser(userData);
         setCards(cardsData);
@@ -177,6 +181,9 @@ function App() {
       localStorage.setItem('token', res.token);
       history.push('/main');
     })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   // при успешной регистрации переходим на основную страницу,
@@ -184,10 +191,9 @@ function App() {
   function handleRegister(data) {
     auth.register(data)
     .then(res => {
-      setLoggedIn(true);
       setIsRegistered(true);
       setIsInfoTooltipOpen(true);
-      history.push('./main');
+      history.push('./sign-in');
     })
     .catch(err => {
       setIsRegistered(false);

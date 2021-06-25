@@ -1,4 +1,4 @@
-.entry-page__title {
+.auth-page__title {
   margin: 0;
   padding: 40px 0;
   font-size: 24px;
@@ -9,7 +9,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .entry-page__title {
+  .auth-page__title {
     padding: 60px 0 50px;
   }
 }

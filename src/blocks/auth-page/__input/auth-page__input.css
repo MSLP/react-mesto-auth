@@ -1,4 +1,4 @@
-.entry-page__input {
+.auth-page__input {
   background-color: transparent;
   width: 100%;
   line-height: 17px;
@@ -12,14 +12,14 @@
   color: #ccc;
 }
 
-.entry-page__input:focus {
+.auth-page__input:focus {
   outline: none;
 }
 
-.entry-page__input::placeholder {
+.auth-page__input::placeholder {
   color: #ccc;
 }
 
-.entry-page__input:last-of-type {
+.auth-page__input:last-of-type {
   padding-top: 30px;
 }
