@@ -3,7 +3,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import logo from '../images/Vector.svg';
 
 // шапка сайта
-function Header({ handleLogin, email, loggedIn }) {
+function Header({ onSignOut, email, loggedIn }) {
   const history = useHistory();
   const location = useLocation();
 
@@ -17,8 +17,7 @@ function Header({ handleLogin, email, loggedIn }) {
     }
     else if (location.pathname === '/main') {
       history.push('/sign-in');
-      handleLogin(false);
-      localStorage.removeItem('token');
+      onSignOut();
     }
   }
 
