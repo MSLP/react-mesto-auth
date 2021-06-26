@@ -4,7 +4,7 @@
 
 [Ссылка на макет в Figma](https://www.figma.com/file/Bn4RbhQwBdQr5SyIvVQDhJ/JavaScript.-Sprint-4-Copy?node-id=0%3A1)
 
-<!-- [Ссылка на GitHubPages]() -->
+[Ссылка на GitHubPages](https://mslp.github.io/react-mesto-auth/)
 
 ## Используемые технологии:
 
