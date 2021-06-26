@@ -177,6 +177,7 @@ function App() {
   function handleLogin(data) {
     auth.login(data)
     .then(res => {
+      setEmail(data.email);
       setLoggedIn(true);
       localStorage.setItem('token', res.token);
       history.push('/main');
@@ -204,7 +205,8 @@ function App() {
 
   // выход из аккаунта
   function handleSignOut() {
-    handleLogin(false);
+    setLoggedIn(false);
+    setEmail('');
     localStorage.removeItem('token');
   }
 
@@ -214,10 +216,10 @@ function App() {
         <Header onSignOut={handleSignOut} email={email} loggedIn={loggedIn} />
         <Switch>
           <Route path="/sign-up">
-            <Register onSubmit={handleRegister} buttonText="Войти" />
+            <Register onSubmit={handleRegister} />
           </Route>
           <Route path="/sign-in">
-            <Login handleLogin={handleLogin} buttonText="Регистрация"/>
+            <Login handleLogin={handleLogin} />
           </Route>
           <ProtectedRoute
             path="/main"
