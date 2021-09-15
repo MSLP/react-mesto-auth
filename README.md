@@ -1,10 +1,10 @@
 # Mesto-React
 
-Профиль путешественника с фотографиями из любимых мест. Сайт адаптирован под мобильные и десктопные разрешения. Использован подход mobile-first. Страница имеет popup окна редактирования профиля, добавления новой карточки с фотографией, а так же просмотра фотографии в полном размере. Для форм popup`ов добавлена валидация. При написании кода применяются принципы ООП, а так же библиотека React. Добавлена регистрация и авторизация пользователя.
+Place is a personal profile with photos. The SPA was created within the bootcamp and used to get experience with React. This project includes some functionality as register new account, login in existing account, editing profile info, adding new photo-cards and likes for other photos. Popups forms have validation.
 
-[Ссылка на макет в Figma](https://www.figma.com/file/Bn4RbhQwBdQr5SyIvVQDhJ/JavaScript.-Sprint-4-Copy?node-id=0%3A1)
+[Figma template](https://www.figma.com/file/Bn4RbhQwBdQr5SyIvVQDhJ/JavaScript.-Sprint-4-Copy?node-id=0%3A1)
 
-[Ссылка на GitHubPages](https://mslp.github.io/react-mesto-auth/)
+[Project at GitHubPages](https://mslp.github.io/react-mesto-auth/)
 
 ## Используемые технологии:
 
